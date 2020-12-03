@@ -18,7 +18,7 @@ class Shape:
   ]
 
   """
-  These are the different possible rotations for each shape above.
+  These are the total possible rotations for each shape above.
   """
   rotations = [2, 4, 4, 1, 2, 4, 2]
 
@@ -80,6 +80,9 @@ class Shape:
       self.shape = shape
 
   def __contains__(self, item):
+    """
+    Checks if the item (coords) exist in the shape.
+    """
     return item in self.shape
 
 
@@ -93,6 +96,7 @@ class Game:
       - self.h (int): the height of the grid
       - self.grid (array): the grid itself (of colors)
       - self.score (int): the current score of the game
+      - self.shape (Shape): the current shape in play
     
     Args:
       w (int): the width of the grid
@@ -109,18 +113,7 @@ class Game:
       self.grid.append(row)
     
     self.score = 0
-    self.shape = None
-
-  def next_shape(self):
-    """
-    Creates the next shape (centered at the top).
-
-    Args:
-      None
-
-    Returns:
-      None
-    """
+    # centered (at the top)
     self.shape = Shape(3, 0)
 
   def drop_shape(self):
@@ -257,7 +250,8 @@ class Game:
           if self.grid[y_coord][x_coord] == (0, 0, 0):
             self.grid[y_coord][x_coord] = self.shape.color
     self.remove_rows()
-    self.next_shape()
+    # create next shape to drop
+    self.shape = Shape(3, 0)
 
   def end_game(self):
     """
@@ -273,6 +267,9 @@ class Game:
     return self.shape.y == 0 and self.check_collision()
 
   def __iter__(self):
+    """
+    Iterates through the 2d grid.
+    """
     for x in range(self.w):
       for y in range(self.h):
         yield (x, y)

@@ -3,7 +3,7 @@ Run this file to play the game.
 $ python3 play.py
 or
 $ python3 play.py w h
-where w and h are the user specified width and height of the grid
+where w and h are the player specified width and height of the grid
 """
 from sys import exit
 import pygame
@@ -56,11 +56,17 @@ def draw_shape(game, screen):
               block_size, block_size
             ))
     pygame.display.flip()
-  
-def main():
+
+def get_dimensions():
   """
-  The game runs here. The user has the option to enter the grid size, otherwise
-  will play on a standard 10x24 grid.
+  Parses in the player's specified dimensions, otherwise
+  defaults to a 10x24 grid.
+
+  Args:
+    None
+
+  Returns:
+    (int, int): the width and height of the grid
   """
   parser = argparse.ArgumentParser(description="""Enter the size of the board 
     you wish to play on in the following format: width height""")
@@ -70,14 +76,22 @@ def main():
     type=int, const=24)
   args = parser.parse_args()
 
-  pygame.init()
-
   w, h = 10, 24
   if args.w:
     w = args.w
   if args.h:
     h = args.h
+
+  return w, h
   
+def main():
+  """
+  The game runs here. The user has the option to enter the grid size, otherwise
+  will play on a standard 10x24 grid.
+  """
+  pygame.init()
+
+  w, h = get_dimensions()
   size = (w * 30) + (w + 1), (h * 30) + (h + 1)
   background_color = (50, 50, 50)
 
@@ -90,7 +104,6 @@ def main():
   pygame.display.set_caption("Tetris")
 
   game = Game(w, h)
-  game.next_shape()
 
   while 1:
     if count == 100 or (count % 10 == 0 and down):
