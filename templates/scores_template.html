@@ -1,0 +1,6 @@
+<!doctype html>
+<h1>Top 5 Scores</h1>
+{% for score in top_scores %}
+  <div>{{ loop.index }}. {{ score }}</div>
+{% endfor %}
+<h2>Your most recent score was {{ most_recent }}.</h2>
