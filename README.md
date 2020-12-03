@@ -4,7 +4,7 @@ I have implemented the classic game of tetris. The player is able to use keys to
 
 ## Running Instructions
 
-The game can be played by going into the directory with the play.py and tetris.py files, and then running either of the following commands in the terminal: `$ python3 play.py` or `$ python3 play.py w h`, where w and h are the user specified width and height of the grid. Then to see the top scores, the user can run `$ python3 scores.py` and then go to their browser and open 'localhost:5000/'.
+The game can be played by going into the directory with the play.py and tetris.py files, and then running either of the following commands in the terminal: `$ python3 play.py` or `$ python3 play.py w h`, where w and h are the user specified width and height of the grid. Then to see the top scores, the user can run `$ python3 scores.py` and then go to their browser and open `localhost:5000/`.
 
 ## Packages
 
