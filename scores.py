@@ -20,12 +20,12 @@ def display_scores():
   """
   scores = []
   with open("scores.txt", "r") as f:
-      for line in f:
-          scores.append(int(line.rstrip("\n")))
+    for line in f:
+      scores.append(int(line.rstrip("\n")))
   most_recent = scores[len(scores) - 1]
   scores.sort(reverse=True)
 
   return render_template("scores_template.html", top_scores=scores[0:5], most_recent=most_recent)
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+  app.run(port=5000, debug=True)

@@ -1,9 +1,7 @@
 """
 Run this file to play the game.
-$ python3 play.py
-or
-$ python3 play.py w h
-where w and h are the player specified width and height of the grid
+In the console, run `$ python3 play.py` or `$ python3 play.py w h`, where
+w and h are the player specified width and height of the grid
 """
 from sys import exit
 import pygame
@@ -44,18 +42,17 @@ def draw_shape(game, screen):
   Returns:
     None
   """
-  if game.shape is not None:
-    for x in range(4):
-      for y in range(4):
-        if (x, y) in game.shape:
-          x_coord = x + game.shape.x
-          y_coord = y + game.shape.y
-          block_size = 30
-          pygame.draw.rect(screen, game.shape.color, pygame.Rect(
-              x_coord * (block_size + 1) + 1, y_coord * (block_size + 1) + 1,
-              block_size, block_size
-            ))
-    pygame.display.flip()
+  for x in range(4):
+    for y in range(4):
+      if (x, y) in game.shape:
+        x_coord = x + game.shape.x
+        y_coord = y + game.shape.y
+        block_size = 30
+        pygame.draw.rect(screen, game.shape.color, pygame.Rect(
+            x_coord * (block_size + 1) + 1, y_coord * (block_size + 1) + 1,
+            block_size, block_size
+          ))
+  pygame.display.flip()
 
 def get_dimensions():
   """
@@ -148,4 +145,5 @@ def main():
     screen.fill(background_color)
     draw_grid(game, screen)
 
-main()
+if __name__ == "__main__":
+  main()
